@@ -1,2 +1,1 @@
-# Fish-Disease-Detection
-An end-to-end Deep Learning model and deployment
+# Deep-Learning-Car-Brand
