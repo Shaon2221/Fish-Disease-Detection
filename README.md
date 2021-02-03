@@ -1,1 +1,1 @@
-# Deep-Learning-Car-Brand
+# Deep-Learning-Model for Fish-Disease-Detection
