@@ -17,6 +17,7 @@ import numpy as np
 from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+#import tensorflow_hub as hub
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
@@ -30,11 +31,11 @@ app = Flask(__name__)
 MODEL_PATH ='fish_disease_detection.h5'
 
 # Load your trained model
-model = load_model(MODEL_PATH)
+model = load_model(MODEL_PATH,custom_objects={'KerasLayer': hub.KerasLayer})
+#model._make_predict_function() 
 
 
-
-
+print('Model loaded. Check http://127.0.0.1:5000/')
 def model_predict(img_path, model):
     img = image.load_img(img_path, target_size=(224, 224))
 
@@ -55,7 +56,7 @@ def model_predict(img_path, model):
         preds="Argulus disease detected! Confidence:{}",np.argmax(p)
     elif preds==1:
         preds="Epizootic Ulcerative disease detected! Confidence:{}",np.argmax(p)
-    else:
+    elif preds==2:
         preds="Tail & Fin Rot disease detected! Confidence:{}",np.argmax(p)
     
     
