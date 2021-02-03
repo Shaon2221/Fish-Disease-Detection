@@ -25,7 +25,7 @@ from werkzeug.utils import secure_filename
 #from gevent.pywsgi import WSGIServer
 
 # Define a flask app
-app = Flask(__name__)
+app = flask.Flask(__name__, template_folder='templates')
 
 # Model saved with Keras model.save()
 MODEL_PATH ='fish_disease_detection.h5'
@@ -66,14 +66,14 @@ def model_predict(img_path, model):
 @app.route('/', methods=['GET'])
 def index():
     # Main page
-    return render_template('index.html')
+    return flask.render_template('index.html')
 
 
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
-    if request.method == 'POST':
+    if flask.request.method == 'POST':
         # Get the file from post request
-        f = request.files['file']
+        f = flask.request.files['file']
 
         # Save the file to ./uploads
         basepath = os.path.dirname(__file__)
