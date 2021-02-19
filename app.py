@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Jun 11 22:34:20 2020
 
+@author: Krish Naik
+"""
 
 from __future__ import division, print_function
 # coding=utf-8
@@ -16,6 +21,8 @@ from tensorflow.keras.preprocessing import image
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
+from PIL import Image
+sys.modules['Image'] = Image 
 #from gevent.pywsgi import WSGIServer
 
 # Define a flask app
@@ -69,11 +76,13 @@ def upload():
         # Get the file from post request
         f = request.files['file']
 
-        # Save the file to ./uploads
+	# Save the file to ./uploads
         basepath = os.path.dirname(__file__)
         file_path = os.path.join(
             basepath, 'uploads', secure_filename(f.filename))
         f.save(file_path)
+
+        
 
         # Make prediction
         preds = model_predict(file_path, model)
