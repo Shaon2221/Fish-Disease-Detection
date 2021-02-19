@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 11 22:34:20 2020
-
-@author: Krish Naik
+@author: Shaon Sikder
 """
 
 from __future__ import division, print_function
@@ -51,14 +49,15 @@ def model_predict(img_path, model):
 
     # Be careful how your trained model deals with the input
     # otherwise, it won't make correct prediction!
-    x = preprocess_input(x)
+    #x = preprocess_input(x)
 
     preds = model.predict(x)
+    p=preds
     preds=np.argmax(preds, axis=1)
     if preds==0:
-        preds="The Person is Infected With Pneumonia"
+        preds="Argulus disease detected!"+str("{:.2f}".format(p[0][0]*100))+"%"
     else:
-        preds="The Person is not Infected With Pneumonia"
+        preds="Epizootic Ulcerative disease detected!"+str("{:.2f}".format(p[0][1]*100))+"%"
     
     
     return preds
