@@ -1,1 +1,1 @@
-# Malaria-Detection
+# Fish-Disease-Detection
