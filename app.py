@@ -55,9 +55,9 @@ def model_predict(img_path, model):
     p=preds
     preds=np.argmax(preds, axis=1)
     if preds==0:
-        preds="Argulus disease detected!"+str("{:.2f}".format(p[0][0]*100))+"%"
+        preds="Argulus disease detected! Confidence:"+str("{:.2f}".format(p[0][0]*100))+"%"
     else:
-        preds="Epizootic Ulcerative disease detected!"+str("{:.2f}".format(p[0][1]*100))+"%"
+        preds="Epizootic Ulcerative disease detected! Confidence:"+str("{:.2f}".format(p[0][1]*100))+"%"
     
     
     return preds
